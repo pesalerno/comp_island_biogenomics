@@ -43,7 +43,7 @@ same filters as Pseudacris/Xantusia
 
 ####Second output from stacks *populations*
 
-Make a ***whitelist*** file, which is a list of the loci to include based on the plink results, ordered as a simple file containing one catalog locus per line: 
+Make a ***whitelist*** file, which is a list of the loci to include based on the plink results (i.e. on amount of missing data in locus). The whitelist file is ordered as a simple file containing one catalog locus per line: 
 
 		% more whitelist
 		3
@@ -55,9 +55,17 @@ Make a ***whitelist*** file, which is a list of the loci to include based on the
 		972
 		2653
 		22
+In order to get from the .map file to the whitelist file format, open *_c.map file in Text Wrangler, and do find and replace arguments using **grep**:
+
+	search for \d\t(\d*)_\d*\t\d\t\d*$
+	replace with \1
 
 
-Run populations again using the whitelist of loci to keep based on the plink filters:
+
+Using the **.irem** file from the second iteration of *plink* (in our example named with termination **"_b"**), remove individuals from old popmap so that they are excluded from the analysis (i.e. individuals with too much missing data). 
+
+
+In Run populations again using the whitelist of loci and the updated popmap file for loci and individuals to retain based on the plink filters:
 
 	populations -b 1 -P ./ -M ./popmap.txt  -p 1 -r 0.5 -W Pr-whitelist --write_random_snp --structure --plink --vcf --genepop --fstats --phylip
 	
