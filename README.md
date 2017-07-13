@@ -1,8 +1,9 @@
 
-##Comparative Population Genomics of Channel Island endemics
+Comparative Population Genomics of Channel Island endemics
+======
 
-
-####Datasets to be used
+Datasets to be used
+---
 
 1. Pseudacris regilla (Prse) - 3 islands
 2. Xantusia riversiana (Xari) - 3 islands
@@ -11,8 +12,8 @@
 5. Island Foxes (URIL) - 6 islands
 
 
-####First output from stacks *populations*
-
+First output from stacks *populations*
+-------
 Run populations on the mapped dataset using the following code: 
 
 	populations -b (batchnumber_you_used) -P ./input_sequences -M ./popmap_by_island -p 1 -r 0.2 --write_random_snp --plink 
@@ -23,7 +24,8 @@ and we use the .ped and .map files from the output.
 After that, filter in plink and then back to stacks.
 
 
-####Filtering in plink
+Filtering in plink
+----
 
 same filters as Pseudacris/Xantusia
 
@@ -41,7 +43,8 @@ same filters as Pseudacris/Xantusia
 
 		/.plink --file filename_b --maf 0.02 --recode --out filename_c --noweb
 
-####Second output from stacks *populations*
+Second output from stacks *populations*
+----
 
 Make a ***whitelist*** file, which is a list of the loci to include based on the plink results (i.e. on amount of missing data in locus). The whitelist file is ordered as a simple file containing one catalog locus per line: 
 
